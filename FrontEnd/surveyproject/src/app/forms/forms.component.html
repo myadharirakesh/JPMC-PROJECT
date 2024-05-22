@@ -1,0 +1,111 @@
+<div class="container-fluid "style="background-color:powderblue;height:1500px">
+  <div>
+  <input type="file" (change)="onFileSelected($event)" accept=".xlsx, .xls">
+  <button (click)="uploadFile()">Upload</button>
+</div>
+
+<div>
+  <form *ngIf="questions.length > 0" (ngSubmit)="submitForm()">
+    <div class="col-md-8">
+      <div *ngFor="let question of questions; let i = index" class="form-group">
+        <b><label class="form-label">{{ question.questionNumber }}. {{ question.questionText }}</label></b>
+        <div *ngFor="let option of question.options; let j = index">
+          <input type="radio" [(ngModel)]="formData[i]" [value]="option" name="question{{i}}" class="form-check-input">
+          <label class="form-check-label">{{ option }}</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+<!-- <div *ngIf="formFields.length > 0">
+  <button (click)="generateShareLink()" class="btn btn-secondary">Generate Share Link</button>
+</div>
+
+<div *ngIf="shareLink" class="share-link-container">
+  <label>Shareable Link:</label>
+  <input type="text" [value]="shareLink" readonly class="form-control">
+  <button (click)="copyToClipboard(shareLink)" class="btn btn-secondary">Copy Link</button>
+</div>
+
+ -->
+
+<!-- <div>
+      <input type="file" (change)="onFileSelected($event)" accept=".xlsx, .xls">
+      <button (click)="uploadFile()">Upload</button>
+    </div>
+    
+    <form *ngIf="questions.length > 0" (ngSubmit)="submitForm()">
+      <div class="col-md-8">
+        <div *ngFor="let question of questions; let i = index" class="form-group">
+          <b *ngIf="!question.isEditing">
+            <label class="form-label">{{ question.questionNumber }}. {{ question.questionText }}</label>
+          </b>
+          <input 
+            *ngIf="question.isEditing"
+            type="text"
+            [(ngModel)]="question.questionText"
+            class="form-control"
+          >
+          
+          <div *ngFor="let option of question.options; let j = index">
+            <input 
+              type="radio" 
+              [(ngModel)]="formData[i]" 
+              [value]="option" 
+              name="question{{i}}" 
+              class="form-check-input">
+            <label 
+              *ngIf="!question.isEditing" 
+              class="form-check-label">{{ option }}
+            </label>
+            <input 
+              *ngIf="question.isEditing"
+              type="text"
+              [(ngModel)]="question.options[j]"
+              class="form-control"
+            >
+          </div>
+          <button type="button" (click)="toggleEdit(i)" class="btn btn-secondary">
+            {{ question.isEditing ? 'Save' : 'Edit' }}
+          </button>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+     -->
+
+
+<!-- <div>
+      <input type="file" (change)="onFileSelected($event)" accept=".xlsx, .xls">
+      <button (click)="uploadFile()">Upload</button>
+    </div>
+    
+    <form *ngIf="questions.length > 0" (ngSubmit)="submitForm()">
+      <div class="col-md-8">
+        <div *ngFor="let question of questions; let i = index" class="form-group">
+          <b>
+            <label class="form-label">{{ question.questionNumber }}.</label>
+            <input type="text" [(ngModel)]="question.questionText" name="questionText{{i}}" class="form-control">
+          </b>
+          <div *ngFor="let option of question.options; let j = index">
+            <input 
+              type="text" 
+              [(ngModel)]="question.options[j]" 
+              name="option{{i}}{{j}}" 
+              class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+    <div *ngIf="questions.length > 0">
+      <button (click)="editAllQuestions()" class="btn btn-warning">Edit</button>
+    </div> -->
